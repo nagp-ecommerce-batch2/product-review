@@ -17,8 +17,9 @@ public class ReviewDTO {
 	private String productId;
 	private String userId;
     private String comment;
-    private int rating;
+    private double rating;
     private String reviewDate;
+    private String title;
     
 
     @Override

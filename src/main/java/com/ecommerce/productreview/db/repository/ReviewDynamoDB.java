@@ -43,7 +43,8 @@ public class ReviewDynamoDB {
             		reviewDTO.getProductId(),
             		reviewDTO.getUserId(),
             		reviewDTO.getComment(),
-            		reviewDTO.getRating()
+            		reviewDTO.getRating(),
+            		reviewDTO.getTitle()
             		);
 
             System.err.println("adding review"+review.toString());
@@ -110,16 +111,15 @@ public class ReviewDynamoDB {
             
     
             Map<String, AttributeValue> expressionAttributeValues = new HashMap<String, AttributeValue>();
-    
             AttributeValue pkPrefixAttr = AttributeValue.builder()
-            .s("User004")
+            .s(reviewFilterDTO.getFilterValue())
             .build();
             
     
             expressionAttributeValues.put(":pkPrefix", pkPrefixAttr);
-    
+            String fieldExpression = "begins_with(" + reviewFilterDTO.getFilterKey()+ ", :pkPrefix)";
             Expression expression = Expression.builder()
-            .expression("begins_with(userId, :pkPrefix)")
+            .expression(fieldExpression)
             .expressionValues(expressionAttributeValues)
             .build();
     

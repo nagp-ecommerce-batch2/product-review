@@ -1,5 +1,5 @@
 server:
-    port: 8091
+    port: 8093
 amazon:
     dynamodb:
         endpoint: "https://dynamodb.ap-south-1.amazonaws.com"
@@ -7,8 +7,8 @@ amazon:
      endpoint: "https://search-product-es-u4jrwstj4ev36wkjhbmhlv6odm.ap-south-1.es.amazonaws.com"
      region: "ap-south-1"
     aws:
-     accessKey: "AKIATB6ZHMNIWZHZNYNA"
-     secretKey: "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"
+     accessKey: ""
+     secretKey: ""
 
 
 

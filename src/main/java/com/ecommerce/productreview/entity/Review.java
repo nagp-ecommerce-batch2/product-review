@@ -20,14 +20,16 @@ public class Review {
     private String comment;
     private double rating;
     private String reviewDate;
+    private String title;
     
-    public Review(String productId, String userId, String comment, int rating) {
+    public Review(String productId, String userId, String comment, double rating, String title) {
     	this.reviewId = this.generateReviewId();
         this.comment = comment;
         this.productId = productId;
         this.userId = userId;
         this.rating = rating;
         this.reviewDate = new Date().toString();
+        this.title = title;
     }
 
     
@@ -46,6 +48,14 @@ public class Review {
     }
     public void setComment(String comment) {
         this.comment = comment;
+    }
+    
+    @DynamoDbAttribute("title")
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
     }
     
     @DynamoDbAttribute("userId")

@@ -22,11 +22,11 @@ public class DynamoDBConfig {
     @Value("${amazon.dynamodb.endpoint}")
     private String amazonDynamoDBEndpoint;
 
-    @Value("${amazon.aws.accesskey}")
-    private String amazonAWSAccessKey;
-
-    @Value("${amazon.aws.secretkey}")
-    private String amazonAWSSecretKey;
+//    @Value("${amazon.aws.accesskey}")
+//    private String amazonAWSAccessKey;
+//
+//    @Value("${amazon.aws.secretkey}")
+//    private String amazonAWSSecretKey;
     
 
     @Bean
@@ -53,7 +53,7 @@ public class DynamoDBConfig {
 
     @Bean
     public AwsBasicCredentials amazonAWSCredentials() {
-      AwsBasicCredentials awsCreds = AwsBasicCredentials.create(amazonAWSAccessKey, amazonAWSSecretKey);
+      AwsBasicCredentials awsCreds = AwsBasicCredentials.create(System.getenv("AWS_ACCESS_KEY_ID"), System.getenv("AWS_SECRET_ACCESS_KEY"));
         return awsCreds;
     }
 

@@ -1,15 +1,15 @@
-package com.ecommerce.productreview.services.impl;
+package com.amcart.service.productreview.services.impl;
 
 
 import java.util.List;
 
-import com.ecommerce.productreview.services.IReviewService;
-import com.ecommerce.productreview.db.repository.ReviewDynamoDB;
-import com.ecommerce.productreview.models.ReviewDTO;
-import com.ecommerce.productreview.models.ReviewFilterDTO;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.amcart.service.productreview.db.repository.ReviewDynamoDB;
+import com.amcart.service.productreview.models.ReviewDTO;
+import com.amcart.service.productreview.models.ReviewFilterDTO;
+import com.amcart.service.productreview.services.IReviewService;
 
 @Service
 public class ReviewService implements IReviewService {

@@ -1,4 +1,4 @@
-package com.ecommerce.productreview;
+package com.amcart.service.productreview;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.ecommerce.productreview.exception;
+package com.amcart.service.productreview.exception;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

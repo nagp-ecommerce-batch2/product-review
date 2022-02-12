@@ -1,11 +1,11 @@
-package com.ecommerce.productreview.services;
+package com.amcart.service.productreview.services;
 
 
 
 import java.util.List;
 
-import com.ecommerce.productreview.models.ReviewDTO;
-import com.ecommerce.productreview.models.ReviewFilterDTO;
+import com.amcart.service.productreview.models.ReviewDTO;
+import com.amcart.service.productreview.models.ReviewFilterDTO;
 
 public interface IReviewService {
     public void addReview(ReviewDTO reviewDTO);

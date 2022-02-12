@@ -1,4 +1,4 @@
-package com.ecommerce.productreview.models;
+package com.amcart.service.productreview.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

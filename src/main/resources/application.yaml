@@ -1,14 +1,33 @@
 server:
     port: 8093
-amazon:
+spring:
+    main:
+        allow-bean-definition-overriding: true
+    autoconfigure:
+        exclude:
+        - org.springframework.cloud.aws.autoconfigure.context.ContextInstanceDataAutoConfiguration
+        - org.springframework.cloud.aws.autoconfigure.context.ContextStackAutoConfiguration
+        - org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration
+    jpa:
+        properties:
+                hibernate:
+                    show_sql: true
+                    use_sql_comments: true
+                    format_sql: true
+aws:
+    region: "ap-south-1"
+    amcartIAMRole: "arn:aws:iam::210372092753:role/amcart-limited-access-role"
     dynamodb:
         endpoint: "https://dynamodb.ap-south-1.amazonaws.com"
     es:
-     endpoint: "https://search-product-es-u4jrwstj4ev36wkjhbmhlv6odm.ap-south-1.es.amazonaws.com"
-     region: "ap-south-1"
-    aws:
-     accessKey: ""
-     secretKey: ""
+        endpoint: "https://search-product-els-sfftu3x5c6jvajh7ogfm6bzzri.ap-south-1.es.amazonaws.com"
+    s3:
+        endpointUrl: https://s3.ap-south-1.amazonaws.com
+        productbucketname: amcart-product-bucket-1
+
+springdoc:
+    swagger-ui:
+        path: /swagger-ui-custom.html
 
 
 

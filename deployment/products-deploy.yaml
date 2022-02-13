@@ -9,7 +9,7 @@ spec:
     app: product-review
   ports:
   - port: 80
-    targetPort: 8093
+    targetPort: 8094
     protocol: TCP
   type: NodePort
 ---
@@ -34,7 +34,7 @@ spec:
         image: "asia-south1-docker.pkg.dev/amcart-337701/amcart/product-review:SHORT_SHA_VAR"
         imagePullPolicy: Always
         ports:
-        - containerPort: 8093
+        - containerPort: 8094
         env:
           - name: AWS_ACCESS_KEY_ID
             value: 'AWS_ACCESS_KEY_ID_VAR'
@@ -43,4 +43,4 @@ spec:
         readinessProbe:
           httpGet:
             path: /api/v1/reviews/healthz
-            port: 8093
+            port: 8094

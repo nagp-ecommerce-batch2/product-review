@@ -1,0 +1,103 @@
+{
+    "steps": [
+        {
+            "id": "Clone Repo",
+            "name": "gcr.io/google.com/cloudsdktool/cloud-sdk:alpine",
+            "entrypoint": "git",
+            "env": [
+                "BRANCH_NAME=$BRANCH_NAME"
+            ],
+            "args": [
+                "clone",
+                "https://source.developers.google.com/p/amcart-337701/r/product-review",
+                "$BRANCH_NAME"
+            ]
+        },
+        {
+            "id": "Sub module update",
+            "name": "gcr.io/google.com/cloudsdktool/cloud-sdk:alpine",
+            "entrypoint": "git",
+            "args": [
+                "submodule",
+                "update",
+                "--init",
+                "--recursive"
+            ]
+        },
+        {
+            "id": "Build",
+            "name": "maven",
+            "entrypoint": "mvn",
+            "args": ["install"],
+            "secretEnv": [
+                "AWS_ACCESS_KEY_ID",
+                "AWS_SECRET_ACCESS_KEY"
+            ]
+        },
+        {
+            "id": "Docker build",
+            "name": "docker",
+            "env": [
+                "SHORT_SHA=$SHORT_SHA"
+            ],
+            "args": ["build", "-t", "asia-south1-docker.pkg.dev/amcart-337701/amcart/product-review:$SHORT_SHA", "-f", "Dockerfile", "."]
+        },
+        {
+            "id": "Docker push",
+            "name": "docker",
+            "env": [
+                "SHORT_SHA=$SHORT_SHA"
+            ],
+            "args": ["push", "asia-south1-docker.pkg.dev/amcart-337701/amcart/product-review:$SHORT_SHA"]
+        },
+        {
+            "id": "Modifying template param",
+            "name": "gcr.io/cloud-builders/gcloud",
+            "entrypoint": "bash",
+            "env": [
+                "SHORT_SHA=$SHORT_SHA"
+            ],
+            "args": [
+                "-c",
+                "chmod u+x scripts/script.sh && ./scripts/script.sh -b $$AWS_ACCESS_KEY_ID -n $$AWS_SECRET_ACCESS_KEY -r $SHORT_SHA -s product-review"
+            ],
+            "secretEnv": [
+                "AWS_ACCESS_KEY_ID",
+                "AWS_SECRET_ACCESS_KEY"
+            ]
+        },
+        {
+            "id": "Get Kubectl",
+            "name": "gcr.io/cloud-builders/gke-deploy",
+            "env": [
+                "SHORT_SHA=$SHORT_SHA"
+            ],
+            "args": [
+                "run",
+                "--filename=deployment/deploy.yaml",
+                "--location=${_CLOUDSDK_COMPUTE_ZONE}",
+                "--cluster=${_CLOUDSDK_CONTAINER_CLUSTER}"
+            ],
+            "secretEnv": [
+                "AWS_ACCESS_KEY_ID",
+                "AWS_SECRET_ACCESS_KEY"
+            ]
+        }
+    ],
+    "availableSecrets": {
+        "secretManager": [
+            {
+                "versionName": "projects/161800184360/secrets/aws-access-key-id-secret/versions/2",
+                "env": "AWS_ACCESS_KEY_ID"
+            },
+            {
+                "versionName": "projects/161800184360/secrets/aws-secret-access-key-secret/versions/2",
+                "env": "AWS_SECRET_ACCESS_KEY"
+            }
+        ]
+    },
+    "substitutions": {
+        "_CLOUDSDK_COMPUTE_ZONE": "asia-south1-a",
+        "_CLOUDSDK_CONTAINER_CLUSTER": "dev-cluster"
+    }
+}

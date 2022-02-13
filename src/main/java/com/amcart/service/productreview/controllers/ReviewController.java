@@ -1,13 +1,8 @@
-package com.ecommerce.productreview.controllers;
+package com.amcart.service.productreview.controllers;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 import javax.annotation.Resource;
-
-import com.ecommerce.productreview.exception.InternalServerException;
-import com.ecommerce.productreview.models.ReviewDTO;
-import com.ecommerce.productreview.models.ReviewFilterDTO;
-import com.ecommerce.productreview.services.impl.ReviewService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.amcart.service.common.exception.InternalServerException;
+import com.amcart.service.productreview.models.ReviewDTO;
+import com.amcart.service.productreview.models.ReviewFilterDTO;
+import com.amcart.service.productreview.services.impl.ReviewService;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController

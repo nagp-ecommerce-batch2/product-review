@@ -1,4 +1,4 @@
-package com.ecommerce.productreview.db.repository;
+package com.amcart.service.productreview.db.repository;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
-import com.ecommerce.productreview.entity.Review;
-import com.ecommerce.productreview.exception.AddItemException;
-import com.ecommerce.productreview.models.ReviewDTO;
-import com.ecommerce.productreview.models.ReviewFilterDTO;
+import com.amcart.service.common.exception.AddItemException;
+import com.amcart.service.productreview.entity.Review;
+import com.amcart.service.productreview.models.ReviewDTO;
+import com.amcart.service.productreview.models.ReviewFilterDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +54,7 @@ public class ReviewDynamoDB {
         	System.err.println(e);
             LOGGER.error(e.getMessage());
             LOGGER.error(e.getStackTrace().toString());
-            LOGGER.error("Error while getting review from table %s", e.getMessage());
+            LOGGER.error("Error while getting review from the table %s", e.getMessage());
             throw new AddItemException();
         }
         return;
@@ -62,6 +62,7 @@ public class ReviewDynamoDB {
     }
 
     public List<ReviewDTO> getReviews() {
+    	
         List<ReviewDTO> reviewDTOs = new ArrayList<ReviewDTO>();
         try {
 

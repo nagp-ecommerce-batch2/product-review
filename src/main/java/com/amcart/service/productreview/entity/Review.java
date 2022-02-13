@@ -1,4 +1,4 @@
-package com.ecommerce.productreview.entity;
+package com.amcart.service.productreview.entity;
 
 import java.util.Date;
 import java.util.UUID;

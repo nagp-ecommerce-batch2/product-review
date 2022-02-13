@@ -56,7 +56,7 @@ public class ReviewController {
 
     @GetMapping("/")
     public List<ReviewDTO> getReviews() {
-      LOGGER.info("Getting All Reviews from the table\n");
+      LOGGER.info("Getting All Reviews from table\n");
       try {
 
           return reviewService.getReviews();

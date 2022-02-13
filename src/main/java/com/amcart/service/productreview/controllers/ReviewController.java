@@ -31,7 +31,7 @@ public class ReviewController {
     @PostMapping("/")
     public void addReview(@RequestBody ReviewDTO reviewDTO) {
     	System.err.println("adding review");
-      LOGGER.info("Adding New Review to the table\n");
+      LOGGER.info("Adding New Review to table\n");
       try {
     	  reviewService.addReview(reviewDTO);
           return;

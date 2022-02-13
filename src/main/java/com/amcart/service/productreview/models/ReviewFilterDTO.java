@@ -1,14 +1,7 @@
 package com.amcart.service.productreview.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class ReviewFilterDTO {
 	
 	private String filterKey;
@@ -20,4 +13,25 @@ public class ReviewFilterDTO {
     	return "ReviewFilterDTO [filterKey=" + filterKey + ", filterValue=" + filterValue + "]";
     }
 
+
+	public String getFilterKey() {
+		return filterKey;
+	}
+
+
+	public void setFilterKey(String filterKey) {
+		this.filterKey = filterKey;
+	}
+
+
+	public String getFilterValue() {
+		return filterValue;
+	}
+
+
+	public void setFilterValue(String filterValue) {
+		this.filterValue = filterValue;
+	}
+
+    
 }

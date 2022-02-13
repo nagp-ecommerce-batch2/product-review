@@ -4,14 +4,13 @@ import java.util.Date;
 import java.util.UUID;
 
 
-import lombok.NoArgsConstructor;
+
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 
 
 @DynamoDbBean
-@NoArgsConstructor
 public class Review {
 
 	private String reviewId;
@@ -21,6 +20,8 @@ public class Review {
     private double rating;
     private String reviewDate;
     private String title;
+    
+    public Review() {}
     
     public Review(String productId, String userId, String comment, double rating, String title) {
     	this.reviewId = this.generateReviewId();
